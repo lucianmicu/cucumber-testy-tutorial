@@ -1,8 +1,6 @@
 Feature: Login
 
-  Scenario: open any webpage
-    Given I open this URL "http://google.com"
-    Then I send 5 into search field
+
 
   Scenario: Login succesfully
    Given I acces the login page
