@@ -50,7 +50,7 @@ public class LoginSteps extends TestBaseNative {
         driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
     }
 
-    @And("^I insert valid credentials$")
+    @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() throws Throwable {
        WebElement email = driver.findElement(By.id("email"));
         email.sendKeys("eu@fast.com");
@@ -78,13 +78,23 @@ public class LoginSteps extends TestBaseNative {
 
 
 
-    @And("^I insert invalid credentials$")
+    @Given("^I insert invalid credentials$")
     public void I_insert_invalid_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("eu@fast.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("aa.pass");
+
+        Utils.sleep(2000);
     }
 
     @Then("^I expect invalid credentials message$")
     public void I_expect_invalid_credentials_message() throws Throwable {
-        // Express the Regexp above with the code you wish you had
+        WebElement error = driver.findElement(By.className("error-msg"));
+                assertThat (error.getText(), is("Invalid user or password!"));
+
     }
+
+
 }
