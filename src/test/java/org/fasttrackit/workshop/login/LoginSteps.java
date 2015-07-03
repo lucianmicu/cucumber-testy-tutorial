@@ -80,13 +80,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I insert invalid credentials$")
     public void I_insert_invalid_credentials() throws Throwable {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("eu@fast.com");
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("aa.pass");
-
-        I_credentials("eu@fast.com", "aa.pass");
+                I_credentials("eu@fast.com", "aa.pass");
         Utils.sleep(2000);
     }
 
@@ -115,5 +109,11 @@ public class LoginSteps extends TestBaseNative {
     @Then("^I expect \"([^\"]*)\" message$")
     public void I_expect_message(String msg) {
         errorMessageShouldBePresent(msg);
+    }
+    
+
+    @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
+    public void I_enter_credentials(String emailValue, String passValue) throws Throwable {
+        I_credentials(emailValue, passValue);
     }
 }
