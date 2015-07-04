@@ -45,7 +45,6 @@ public class PreferencesView {
         repeatPassword.setValue(s);
     }
 
-
     public void doSave() {
         saveButton.click();
     }
