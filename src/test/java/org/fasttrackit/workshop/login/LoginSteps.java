@@ -10,6 +10,7 @@ import org.fasttrackit.util.TestBaseNative;
 import org.fasttrackit.workshop.pagefactory.login.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,14 @@ public class LoginSteps extends TestBaseNative {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
     LoginPage loginPage;
+
+    public LoginSteps() {
+        initPage();
+    }
+
+    public void initPage(){
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+    }
 
     @Given("^I open login page$")
     public void I_open_login_page() {
@@ -64,7 +73,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I click login button$")
     public void I_click_login_button() throws Throwable {
-        loginPage.clickOnLoginButton(driver);
+        loginPage.clickOnLoginButton();
 
     }
 
@@ -84,7 +93,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I insert invalid credentials$")
     public void I_insert_invalid_credentials() throws Throwable {
-                I_credentials("eu@fast.com", "aa.pass");
+        I_credentials("eu@fast.com", "aa.pass");
         Utils.sleep(2000);
     }
 
@@ -114,7 +123,7 @@ public class LoginSteps extends TestBaseNative {
     public void I_expect_message(String msg) {
         errorMessageShouldBePresent(msg);
     }
-    
+
 
     @When("^I enter \"([^\"]*)\"/\"([^\"]*)\" credentials$")
     public void I_enter_credentials(String emailValue, String passValue) throws Throwable {
