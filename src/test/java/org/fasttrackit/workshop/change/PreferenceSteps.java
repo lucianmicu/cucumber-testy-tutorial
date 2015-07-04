@@ -9,7 +9,11 @@ import cucumber.api.java.en.When;
 import org.fasttrackit.util.TestBase;
 import org.fasttrackit.workshop.Preferences.PreferencesView;
 import org.fasttrackit.workshop.login.LoginSteps;
+import org.fasttrackit.workshop.menu.MainMenuView;
 import org.fasttrackit.workshop.testy.LoginView;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by lucian.micu on 7/4/2015.
@@ -38,21 +42,20 @@ public class PreferenceSteps extends TestBase {
     }
 
     @Then("^I should see \"([^\"]*)\" message$")
-    public void I_should_see_message(String arg1) throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+    public void I_should_see_message(String msg) {
+        assertThat(preferencesView.getMessage(), is(msg));
+
     }
 
     @And("^I close the Preferences window$")
     public void I_close_the_Preferences_window() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        preferencesView.doClose();
+        new MainMenuView().logout();
     }
 
     @And("^I can re-login with new credentials$")
     public void I_can_re_login_with_new_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+
     }
 
     @Given("^I successfully login$")
@@ -65,5 +68,10 @@ public class PreferenceSteps extends TestBase {
     @When("^I click on Preferences button$")
     public void I_click_on_Preferences_button() throws Throwable {
         preferencesView.open();
+    }
+
+    @And("^I logout$")
+    public void I_logout() {
+        MainMenuView.logout();
     }
 }

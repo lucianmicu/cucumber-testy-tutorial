@@ -13,11 +13,12 @@ public class PreferencesView {
     private WebLocator window = new WebLocator().setId("preferences-win");
 
     private Button preferencesButton = new Button().setText("Preferences");
-    private TextField currentPassword = new TextField().setLabel("Current Password");
-    private TextField newPassword = new TextField().setLabel("New Password");
-    private TextField repeatPassword = new TextField().setLabel("Repeat Password");
-    private Button saveButton = new Button().setText("Save").setContainer(window);
-    private Button closeButton = new Button().setText("Close").setContainer(window);
+    private TextField currentPassword = new TextField(window).setLabel("Current Password");
+    private TextField newPassword = new TextField(window).setLabel("New Password");
+    private TextField repeatPassword = new TextField(window).setLabel("Repeat Password");
+    private Button saveButton = new Button(window).setText("Save").setContainer(window);
+    private Button closeButton = new Button(window).setText("Close").setContainer(window);
+    private WebLocator msgEl = new WebLocator().setContainer(window).setClasses("status-msg");
 
 
     public static void main(String[] args) {
@@ -47,5 +48,14 @@ public class PreferencesView {
 
     public void doSave() {
         saveButton.click();
+    }
+
+    public String getMessage() {
+        return msgEl.getHtmlText();
+    }
+
+    public boolean doClose() {
+        return closeButton.assertClick();
+
     }
 }

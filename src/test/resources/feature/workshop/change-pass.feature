@@ -11,5 +11,8 @@ Feature: As a logged in user I can change my password
     And I click on Save button
     Then I should see "Your password has been successfully changed." message
     And I close the Preferences window
+    And I logout
+    And I successfully login
+
     And I can re-login with new credentials
 
