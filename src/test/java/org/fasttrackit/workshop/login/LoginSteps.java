@@ -32,7 +32,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I open login page$")
     public void I_open_login_page() {
-        driver.get("file:///D:/Testy/src/test/functional/login.html");
+        driver.get("file:///D:/Products/app-demo/login.html");
 
         //loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
@@ -57,16 +57,12 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I acces the login page$")
     public void I_acces_the_login_page() throws Throwable {
-        driver.get("https://dl.dropboxusercontent.com/u/16174618/FastTrackIT/app-demo/login.html");
+        driver.get("file:///D:/Products/app-demo/login.html");
     }
 
     @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() throws Throwable {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("eu@fast.com");
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("eu.pass");
+        loginPage.enterCredentials("eu@fast.com", "eu.pass");
 
         Utils.sleep(2000);
     }
@@ -111,11 +107,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I \"([^\"]*)\"/\"([^\"]*)\" credentials$")
     public void I_credentials(String emailValue, String pass) throws Throwable {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys(emailValue);
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys(pass);
+        loginPage.enterCredentials(emailValue, pass);
         Utils.sleep(2000);
     }
 
