@@ -1,40 +1,27 @@
 package org.fasttrackit.workshop.login;
 
 import com.sdl.selenium.web.utils.Utils;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.fasttrackit.util.TestBaseNative;
-import org.fasttrackit.workshop.pagefactory.login.LoginPage;
+import org.fasttrackit.util.TestBase;
+import org.fasttrackit.workshop.testy.LoginView;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LoginSteps extends TestBaseNative {
+public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
-    LoginPage loginPage;
-
-    public LoginSteps() {
-        initPage();
-    }
-
-    public void initPage(){
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-    }
+    LoginView loginView = new LoginView();
 
     @Given("^I open login page$")
     public void I_open_login_page() {
         driver.get("file:///D:/Products/app-demo/login.html");
-
-        //loginPage = PageFactory.initElements(driver, LoginPage.class);
     }
 
     @When("^I enter email \"([^\"]*)\"$")
@@ -62,14 +49,14 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() throws Throwable {
-        loginPage.enterCredentials("eu@fast.com", "eu.pass");
+        loginView.enterCredentials("eu@fast.com", "eu.pass");
 
         Utils.sleep(2000);
     }
 
     @When("^I click login button$")
     public void I_click_login_button() throws Throwable {
-        loginPage.clickOnLoginButton();
+        loginView.clickOnLoginButton();
 
     }
 
@@ -107,7 +94,7 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I \"([^\"]*)\"/\"([^\"]*)\" credentials$")
     public void I_credentials(String emailValue, String pass) throws Throwable {
-        loginPage.enterCredentials(emailValue, pass);
+        loginView.enterCredentials(emailValue, pass);
         Utils.sleep(2000);
     }
 
