@@ -16,6 +16,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
+    public static String VALID_EMAIL = "eu@fast.com";
+    public static String VaALID_PASS = "eu.pass";
+
 
     LoginView loginView = new LoginView();
 
@@ -49,7 +52,7 @@ public class LoginSteps extends TestBase {
 
     @Given("^I insert valid credentials$")
     public void I_insert_valid_credentials() throws Throwable {
-        loginView.enterCredentials("eu@fast.com", "eu.pass");
+        loginView.enterCredentials(VALID_EMAIL, VaALID_PASS);
 
         Utils.sleep(2000);
     }
