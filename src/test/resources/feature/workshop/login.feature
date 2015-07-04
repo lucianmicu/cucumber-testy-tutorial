@@ -1,3 +1,4 @@
+@screen
 Feature: Login
 
 
@@ -37,3 +38,7 @@ Feature: Login
       | eu@fast.com |          | Please enter your password! |
       | aa@fast.com | somepass | Invalid user or password!   |
       | email       | pass     | Invalid user or password!   |
+
+    Scenario: Logout success
+      Given I successfully login
+      When I access some elements

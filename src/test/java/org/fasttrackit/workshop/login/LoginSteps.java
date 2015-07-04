@@ -64,9 +64,13 @@ public class LoginSteps extends TestBaseNative {
 
     @When("^I click login button$")
     public void I_click_login_button() throws Throwable {
+        loginPage.clickOnLoginButton(driver);
+
+    }
+
+    public void clickOnLoginButton() {
         WebElement loginButton = driver.findElement(By.id("loginButton"));
         loginButton.click();
-        Utils.sleep(2000);
     }
 
     @Then("^I check if user was logged in$")
